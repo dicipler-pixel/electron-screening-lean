@@ -70,9 +70,10 @@ theorem log_rate_deriv (EG E U : ℝ) (hEG : 0 < EG) (hx : 0 < E + U) :
     Real.rpow_add hx, Real.rpow_one, ← Real.sqrt_eq_rpow]
   have hs : 0 < √(E + U) := Real.sqrt_pos.mpr hx
   have hs2 : √(E + U) ^ 2 = E + U := Real.sq_sqrt hx.le
+  have hEG2 : √EG ^ 2 = EG := Real.sq_sqrt hEG.le
   field_simp
-  rw [← hs2]
-  ring
+  try simp only [hEG2, hs2]
+  try ring
 
 /-! ## Sec. 7.2: the ratio cancels every energy-independent factor -/
 
